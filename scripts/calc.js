@@ -73,3 +73,9 @@ function main() {
         }
     }
 }
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('startButton').addEventListener('click', main);
+  });
