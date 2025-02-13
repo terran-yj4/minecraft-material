@@ -74,8 +74,6 @@ function main() {
     }
 }
 
-
-
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("calcButton").addEventListener("click", main);
   });
