@@ -76,6 +76,6 @@ function main() {
 
 
 
-document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('startButton').addEventListener('click', main);
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("calcButton").addEventListener("click", main);
   });
