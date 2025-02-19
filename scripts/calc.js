@@ -2,11 +2,36 @@ import { getMaterialData } from "./data.js";
 const data = getMaterialData();
 console.log(data);
 
-const need_item_list = {
-    "オークの板材": 6,
-    "オークのハーフブロック": 3,
-    "棒": 1
-};
+function getTargetItemList() {
+    return {
+        "オークの板材": 6,
+        "オークのハーフブロック": 3,
+        "棒": 1
+    }
+}
+
+function getWantedItems() {
+    var itemDict = {}
+    // var wantedItemsText = document.getElementsById("itemList").value;
+    wantedItemsText = "minecraft:dropper*1\nminecraft:comparator*1";
+    var splitedItems = wantedItemsText.split("\n");
+    var lineNum = 1;
+    var wrongLineNum = [];
+    for (const itemAndCount of splitedItems) {
+        var itemArr = itemAndCount.split("*")
+        if (itemArr.length != 2) {
+            wrongLineNum.push(lineNum);
+        }
+        itemDict[itemArr[0]] = itemArr[1];
+        lineNum++;
+    }
+    if (wrongLineNum.length == 0) {
+        console.log(itemDict);
+    } else {
+        console.error(wrongLineNum)
+        alert(wrongLineNum + "行目の書式が間違っています。")
+    }
+}
 
 /**
  * 指定したアイテム (item) を needed 個手に入れるために、
@@ -57,7 +82,7 @@ function main() {
     const usage = {}; // 基本素材の使用数
 
     // 必要なアイテムをすべて取得
-    for (const [item, count] of Object.entries(need_item_list)) {
+    for (const [item, count] of Object.entries(getWantedItems)) {
         getItem(item, count, data, leftover, usage);
     }
 
@@ -76,4 +101,8 @@ function main() {
 
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("calcButton").addEventListener("click", main);
-  });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("testButton").addEventListener("click", getWantedItems);
+});
