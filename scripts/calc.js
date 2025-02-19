@@ -12,8 +12,7 @@ function getTargetItemList() {
 
 function getWantedItems() {
     var itemDict = {}
-    // var wantedItemsText = document.getElementsById("itemList").value;
-    wantedItemsText = "minecraft:dropper*1\nminecraft:comparator*1";
+    var wantedItemsText = document.getElementsById("itemList").value;
     var splitedItems = wantedItemsText.split("\n");
     var lineNum = 1;
     var wrongLineNum = [];
